@@ -1,0 +1,21 @@
+cluster,profile,rank,gene,t_stat,p_value,mean_in_cluster,mean_other_clusters
+1,Low AMS and Fast Acclimatizers,1,IL6,-4.757,3.17e-06,8.633,9.478
+1,Low AMS and Fast Acclimatizers,2,VEGFA,-4.615,6.4e-06,8.553,9.338
+1,Low AMS and Fast Acclimatizers,3,EPAS1,-4.477,1.25e-05,8.008,8.806
+1,Low AMS and Fast Acclimatizers,4,NRF2,-3.984,9.54e-05,8.226,8.996
+1,Low AMS and Fast Acclimatizers,5,VEGFR2,-3.983,9.15e-05,8.252,8.936
+2,Low AMS and Slow Acclimatizers,1,PKM2,-3.021,0.00299,7.932,8.557
+2,Low AMS and Slow Acclimatizers,2,HIF2A,-2.524,0.0126,8.3,8.759
+2,Low AMS and Slow Acclimatizers,3,PHD2,2.437,0.016,7.777,7.322
+2,Low AMS and Slow Acclimatizers,4,NOS3,2.138,0.0341,7.672,7.254
+2,Low AMS and Slow Acclimatizers,5,ANG1,-2.118,0.0357,8.0,8.388
+3,High AMS and Fast Acclimatizers,1,HMOX1,-4.962,1.7e-06,8.026,9.061
+3,High AMS and Fast Acclimatizers,2,CRP,-4.527,1.02e-05,8.546,9.41
+3,High AMS and Fast Acclimatizers,3,LDHA,-4.432,1.51e-05,8.369,9.254
+3,High AMS and Fast Acclimatizers,4,GATA1,-3.173,0.00172,7.995,8.535
+3,High AMS and Fast Acclimatizers,5,TNF,-3.11,0.00213,8.579,9.166
+4,High AMS and Poor Acclimatization,1,IL1B,10.552,1.04e-19,10.549,8.599
+4,High AMS and Poor Acclimatization,2,EPO,10.02,1.81e-18,10.441,8.651
+4,High AMS and Poor Acclimatization,3,CXCL8,8.499,3.23e-14,10.121,8.453
+4,High AMS and Poor Acclimatization,4,GLUT1,7.723,2.1e-12,10.123,8.622
+4,High AMS and Poor Acclimatization,5,ACE,7.509,6.85e-12,9.786,8.405

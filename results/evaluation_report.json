@@ -1,0 +1,89 @@
+{
+  "n_train": 400,
+  "n_test": 100,
+  "silhouette_score": 0.24357942061136087,
+  "cluster_summary": [
+    {
+      "cluster": 1,
+      "profile": "Low AMS and Fast Acclimatizers",
+      "n_participants": 117,
+      "ams_cases": 0,
+      "ams_score_mean": 0.459,
+      "spo2_mean": 95.09,
+      "spo2_change": 0.565,
+      "heart_rate_mean": 75.477
+    },
+    {
+      "cluster": 2,
+      "profile": "Low AMS and Slow Acclimatizers",
+      "n_participants": 89,
+      "ams_cases": 13,
+      "ams_score_mean": 0.562,
+      "spo2_mean": 94.591,
+      "spo2_change": -2.828,
+      "heart_rate_mean": 84.924
+    },
+    {
+      "cluster": 3,
+      "profile": "High AMS and Fast Acclimatizers",
+      "n_participants": 108,
+      "ams_cases": 1,
+      "ams_score_mean": 0.577,
+      "spo2_mean": 95.077,
+      "spo2_change": -3.927,
+      "heart_rate_mean": 74.11
+    },
+    {
+      "cluster": 4,
+      "profile": "High AMS and Poor Acclimatization",
+      "n_participants": 86,
+      "ams_cases": 86,
+      "ams_score_mean": 2.283,
+      "spo2_mean": 92.133,
+      "spo2_change": -4.778,
+      "heart_rate_mean": 86.235
+    }
+  ],
+  "selected_genes": {
+    "1": [
+      "IL6",
+      "VEGFA",
+      "EPAS1",
+      "NRF2",
+      "VEGFR2"
+    ],
+    "2": [
+      "PKM2",
+      "HIF2A",
+      "PHD2",
+      "NOS3",
+      "ANG1"
+    ],
+    "3": [
+      "HMOX1",
+      "CRP",
+      "LDHA",
+      "GATA1",
+      "TNF"
+    ],
+    "4": [
+      "IL1B",
+      "EPO",
+      "CXCL8",
+      "GLUT1",
+      "ACE"
+    ]
+  },
+  "test_metrics": {
+    "accuracy": 0.99,
+    "precision": 0.9615384615384616,
+    "recall": 1.0,
+    "f1": 0.9803921568627451,
+    "specificity": 0.9866666666666667,
+    "tn": 74,
+    "fp": 1,
+    "fn": 0,
+    "tp": 25,
+    "auc_roc": 1.0
+  }
+}

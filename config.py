@@ -1,23 +1,36 @@
 """
-Configuration file for AMS Prediction Model.
-Contains hyperparameters, data settings, and model configurations.
+Configuration for the AMS (Acute Mountain Sickness) genetic analysis project.
+
+Pipeline: preprocessing -> K-Means (K=4) -> top-5 genes per cluster -> Naive Bayes.
 """
 
 import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ==============================================================================
 # Data Configuration
 # ==============================================================================
 DATA_CONFIG = {
-    "n_participants": 500,
-    "time_points": [1, 7, 14],  # Days of measurement
-    "ams_prevalence": 0.25,  # ~25% develop AMS (consistent with literature)
+    "n_participants": 500,           # used only by the synthetic data generator
+    "time_points": [1, 7, 14],       # days of measurement
+    "ams_prevalence": 0.25,
     "random_seed": 42,
-    "output_dir": os.path.join(os.path.dirname(__file__), "data"),
+    "output_dir": os.path.join(BASE_DIR, "data"),
+    # Optional: if this Excel workbook exists in output_dir it is used instead of CSVs.
+    "excel_file": "ams_data.xlsx",
+}
+
+# Sheet names (Excel) / file names (CSV) for each data modality
+DATA_SOURCES = {
+    "clinical": {"sheet": "clinical", "csv": "clinical_demographics.csv"},
+    "physiological": {"sheet": "physiological", "csv": "physiological_data.csv"},
+    "transcriptomic": {"sheet": "transcriptomic", "csv": "transcriptomic_data.csv"},
+    "lls": {"sheet": "lls", "csv": "lake_louise_scores.csv"},
 }
 
 # ==============================================================================
-# Physiological Features (based on published AMS research)
+# Physiological Features
 # ==============================================================================
 PHYSIOLOGICAL_FEATURES = {
     "spo2": {"baseline_mean": 97.0, "baseline_std": 1.5, "unit": "%"},
@@ -29,7 +42,7 @@ PHYSIOLOGICAL_FEATURES = {
 }
 
 # ==============================================================================
-# Transcriptomic Features (Hypoxia-related genes from literature)
+# Transcriptomic Features (hypoxia-related genes)
 # ==============================================================================
 GENE_FEATURES = [
     # HIF pathway genes
@@ -49,85 +62,62 @@ GENE_FEATURES = [
 ]
 
 # ==============================================================================
-# Clinical/Demographic Features
+# Clinical/Demographic Features (used only by the synthetic data generator)
 # ==============================================================================
 CLINICAL_FEATURES = {
     "age": {"min": 18, "max": 65, "mean": 35, "std": 10},
-    "sex": {"categories": [0, 1], "probs": [0.5, 0.5]},  # 0=Female, 1=Male
+    "sex": {"categories": [0, 1], "probs": [0.5, 0.5]},
     "bmi": {"mean": 24.0, "std": 3.5, "min": 18.0, "max": 35.0},
     "altitude_experience": {"categories": [0, 1, 2], "probs": [0.4, 0.35, 0.25]},
     "smoking_status": {"categories": [0, 1], "probs": [0.75, 0.25]},
     "fitness_level": {"categories": [1, 2, 3, 4, 5], "probs": [0.1, 0.2, 0.35, 0.25, 0.1]},
     "prior_ams_history": {"categories": [0, 1], "probs": [0.8, 0.2]},
-    "ascent_rate": {"mean": 500, "std": 150, "min": 200, "max": 1000},  # meters/day
-    "target_altitude": {"mean": 4500, "std": 800, "min": 3000, "max": 6500},  # meters
+    "ascent_rate": {"mean": 500, "std": 150, "min": 200, "max": 1000},
+    "target_altitude": {"mean": 4500, "std": 800, "min": 3000, "max": 6500},
 }
 
-# ==============================================================================
-# Lake Louise Score Configuration
-# ==============================================================================
 LLS_CONFIG = {
     "max_score": 12,
-    "ams_threshold": 3,  # LLS >= 3 with headache = AMS diagnosis
+    "ams_threshold": 3,
     "components": ["headache", "gi_symptoms", "fatigue", "dizziness"],
 }
 
 # ==============================================================================
-# Model Hyperparameters
+# Stage 1: K-Means clustering
 # ==============================================================================
-XGBOOST_PARAMS = {
-    "n_estimators": 300,
-    "max_depth": 6,
-    "learning_rate": 0.05,
-    "subsample": 0.8,
-    "colsample_bytree": 0.8,
-    "min_child_weight": 3,
-    "gamma": 0.1,
-    "reg_alpha": 0.1,
-    "reg_lambda": 1.0,
-    "scale_pos_weight": 3.0,  # Handle class imbalance
-    "objective": "binary:logistic",
-    "eval_metric": "auc",
+CLUSTER_CONFIG = {
+    "n_clusters": 4,
+    "n_init": 20,
     "random_state": 42,
-    "use_label_encoder": False,
+    # Participant-level features describing AMS symptoms, oxygen saturation and
+    # physiological response over time.
+    "features": ["ams_score_mean", "spo2_mean", "spo2_change", "heart_rate_mean"],
 }
 
-RANDOM_FOREST_PARAMS = {
-    "n_estimators": 200,
-    "max_depth": 10,
-    "min_samples_split": 5,
-    "min_samples_leaf": 3,
-    "max_features": "sqrt",
-    "class_weight": "balanced",
-    "random_state": 42,
-}
-
-LSTM_PARAMS = {
-    "hidden_units": 64,
-    "dropout_rate": 0.3,
-    "recurrent_dropout": 0.2,
-    "dense_units": 32,
-    "learning_rate": 0.001,
-    "batch_size": 32,
-    "epochs": 100,
-    "patience": 15,  # Early stopping patience
-}
-
-ENSEMBLE_PARAMS = {
-    "meta_learner": "logistic_regression",
-    "cv_folds": 5,
-    "calibration_method": "isotonic",
+CLUSTER_NAMES = {
+    1: "Low AMS and Fast Acclimatizers",
+    2: "Low AMS and Slow Acclimatizers",
+    3: "High AMS and Fast Acclimatizers",
+    4: "High AMS and Poor Acclimatization",
 }
 
 # ==============================================================================
-# Training Configuration
+# Stage 2: gene selection (top genes per cluster)
 # ==============================================================================
+GENE_SELECTION_CONFIG = {
+    "top_n_per_cluster": 5,   # 4 clusters x 5 genes = 20 genes
+}
+
+# ==============================================================================
+# Stage 3: Naive Bayes + training
+# ==============================================================================
+NAIVE_BAYES_PARAMS = {
+    "var_smoothing": 1e-9,
+}
+
 TRAINING_CONFIG = {
     "test_size": 0.2,
-    "val_size": 0.15,
-    "cv_folds": 5,
     "random_seed": 42,
-    "early_stopping_rounds": 20,
-    "model_save_dir": os.path.join(os.path.dirname(__file__), "models"),
-    "results_dir": os.path.join(os.path.dirname(__file__), "results"),
+    "model_save_dir": os.path.join(BASE_DIR, "models"),
+    "results_dir": os.path.join(BASE_DIR, "results"),
 }

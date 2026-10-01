@@ -1,0 +1,5 @@
+cluster,profile,n_participants,ams_cases,ams_score_mean,spo2_mean,spo2_change,heart_rate_mean
+1,Low AMS and Fast Acclimatizers,117,0,0.459,95.09,0.565,75.477
+2,Low AMS and Slow Acclimatizers,89,13,0.562,94.591,-2.828,84.924
+3,High AMS and Fast Acclimatizers,108,1,0.577,95.077,-3.927,74.11
+4,High AMS and Poor Acclimatization,86,86,2.283,92.133,-4.778,86.235
