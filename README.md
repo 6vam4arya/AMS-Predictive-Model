@@ -1,29 +1,107 @@
-# AMS-Predictive-Model
+ ## 🏔️ Predictive Pipeline for Genetic Analysis of Acute Mountain Sickness using K Means Clustering and Naive Bayes 🏔️ 
 
-Machine-learning-based genetic analysis of Acute Mountain Sickness (AMS).
+ > **A computational biology and machine learning project investigating genetic, physiological and transcriptomic factors associated with susceptibility to Acute Mountain Sickness (AMS).**
 
-## Pipeline
-1. **Preprocessing** (`preprocessing.py`) – load Excel/CSV data, merge clinical, physiological, transcriptomic and Lake Louise (AMS) score tables, clean/impute, build one row per participant, stratified train/test split.
-2. **K-Means clustering, K=4** (`clustering.py`) – groups individuals by AMS score, SpO2 and physiological response into:
-   1. Low AMS, fast acclimatizers
-   2. Low AMS, slow acclimatizers
-   3. High AMS, fast acclimatizers
-   4. High AMS, poor acclimatization
-3. **Gene selection** (`feature_engineering.py`) – top 5 genes per cluster (cluster-vs-rest Welch t-statistic, unique genes) = 20 genes.
-4. **Naive Bayes classifier** (`models.py`) – Gaussian NB on the 20 selected genes predicts AMS vs non-AMS.
-5. **Evaluation** (`evaluate.py`) – accuracy, precision, recall, F1, AUC, confusion matrix and ROC figures.
 
-Clustering and gene selection are fitted on the training set only (no test-set leakage).
+ # About the Project
 
-## Run
+ **Acute Mountain Sickness (AMS)** is an altitude-related condition that may occur when an individual ascends to high-altitude environments where oxygen availability is reduced.
+
+ Although environmental and physiological factors play an important role in AMS susceptibility, genetic variations significantly contribute to differences in individual responses to hypoxic environments.
+
+ This project investigates the relationship between **genetic, physiological and transcriptomic characteristics** to establish their relation with AMS susceptibility using computational analysis and machine learning and focuses on identifying highly dominating genetic features that may be associated with different physiological response patterns.
+
+ The overall analysis combines:
+
+ - 🧬 Genetic data analysis
+- 🫁 Physiological response analysis
+- 📊 Exploratory data analysis
+- 🤖 Unsupervised machine learning : K Means Algorithm
+- 🧠 Supervised machine learning : Naive Bayes Algorithm
+- 🔬 Candidate gene identification
+- 📈 Biological interpretation
+
+
+ # Methodology
+
+ The project development took place in the following stages:
+
 ```
-pip install -r requirements.txt
-python train.py      # generates synthetic data if data/ is empty, trains, evaluates
-python predict.py    # predict from gene expression (see --csv option)
+Data Collection
+      ↓
+Data Preprocessing
+      ↓
+Exploratory Data Analysis
+      ↓
+K-Means Clustering (K=4)
+      ↓
+Candidate Gene Selection
+      ↓
+Naive Bayes Classification
+      ↓
+AMS Susceptibility Prediction
+      ↓
+Biological Interpretation
 ```
 
-## Using real data
-Put an Excel workbook `data/ams_data.xlsx` with sheets `clinical`, `physiological`, `transcriptomic`, `lls` (same columns as the synthetic CSVs in `data/`; `clinical` must contain `participant_id` and `ams_label`), or replace the CSVs. Adjust names in `config.py` (`DATA_SOURCES`, `GENE_FEATURES`, `CLUSTER_CONFIG["features"]`).
+---
 
-## Outputs (`results/`)
-`cluster_summary.csv`, `selected_genes.csv`, `confusion_matrix.png`, `roc_curve.png`, `kmeans_clusters.png`, `evaluation_report.json`.
+ # Clusters formed during K Means Clsutering 
+
+The data were initially organized into the required format using spreadsheet-based preprocessing and subsequently prepared for computational analysis. **Four** distinct clusters were formed to facilitate the systematic characterization of AMS patterns, individual physiological responses and susceptibility profiles for efficient downstream analysis and detection.
+
+![Susceptibility Profile Clusters](image.png)
+
+ After clustering, most dominating genes associated with the identified profiles were analysed to determine potentially relevant features which were used for predicting AMS susceptibility for a person based on his/her genetic profile.
+
+
+ # Tech Stack Used
+
+- **Python 3.9+** - Core programming language for data processing, machine learning, statistical analysis and model development
+- **Pandas** - Data loading, integration, cleaning, preprocessing
+- **NumPy** - Numerical computation, array operations, synthetic data generation
+- **SciPy** - Statistical analysis using Welch’s t-test for cluster-wise gene selection
+- **Scikit-learn** - Machine learning pipeline including K-Means clustering, Gaussian Naive Bayes, feature scaling, PCA, train-test splitting and model evaluation
+- **Matplotlib** - Visualization of clusters, confusion matrices and ROC curves
+- **OpenPyXL** - Reading and processing Excel-based genetic and physiological datasets
+- **Joblib** - Serialization and persistence of trained machine learning models and preprocessing components
+- **K-Means Clustering** - Unsupervised grouping of individuals into four AMS susceptibility and acclimatization profiles
+- **Gaussian Naive Bayes** - Probabilistic classification of individuals into AMS and non-AMS categories
+- **PCA** - Dimensionality reduction for visualizing high-dimensional cluster patterns
+- **Welch’s t-test** - Statistical identification and ranking of genes associated with individual clusters
+- **Git & GitHub** - Version control and repository management for the project
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=python,git,github,vscode&theme=dark&perline=4" />
+</p>
+
+### 🤖 Machine Learning & Data Science
+
+<p align="center">
+  <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" />
+  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" />
+  <img src="https://img.shields.io/badge/SciPy-0C55A5?style=for-the-badge&logo=scipy&logoColor=white" />
+  <img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" />
+  <img src="https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=matplotlib&logoColor=white" />
+</p>
+
+### 🧪 Machine Learning Methods
+
+<p align="center">
+  <img src="https://img.shields.io/badge/K--Means_Clustering-6C63FF?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Gaussian_Naive_Bayes-00A67E?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/PCA-FF6B6B?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Welch's_t--test-4C78A8?style=for-the-badge" />
+</p>
+
+
+
+ # 📄 License
+
+ This was the *second* project which had been independently developed by me during my two-months research internship at the *Defence Research and Development Organisation (DRDO), Ministry of Defence, Government of India*. The project is intended for research and educational purposes. **This repository does not represent an official DRDO publication, endorsement or release.**
+
+---
+
+ # 👤 Author
+
+ **Vamika Arya**
