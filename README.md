@@ -96,7 +96,22 @@ The data were initially organized into the required format using spreadsheet-bas
   <img src="https://img.shields.io/badge/Welch's_t--test-4C78A8?style=for-the-badge" />
 </p>
 
+# Quick Setup
 
+### Create virtual environment
+python -m venv venv
+
+### Activate environment — Windows
+venv\Scripts\activate
+
+### Activate environment — macOS/Linux
+source venv/bin/activate
+
+### Install dependencies
+pip install -r requirements.txt
+
+### Run Training
+python train.py
 
  # 📄 License
 
