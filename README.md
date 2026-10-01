@@ -117,6 +117,8 @@ python train.py
 
  This was the **second** project which had been independently developed by me during my two-months research internship at the **Defence Research and Development Organisation (DRDO), Ministry of Defence, Government of India**. The project is intended for research and educational purposes. **This repository does not represent an official DRDO publication, endorsement or release.**
 
+ Copyright © 2026 **Vamika Arya**
+
 ---
 
  # 👩🏻‍💻 Author
