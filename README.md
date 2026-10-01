@@ -71,11 +71,13 @@ The data were initially organized into the required format using spreadsheet-bas
 - **Welch’s t-test** - Statistical identification and ranking of genes associated with individual clusters
 - **Git & GitHub** - Version control and repository management for the project
 
+### Programming and Development
+
 <p align="center">
   <img src="https://skillicons.dev/icons?i=python,git,github,vscode&theme=dark&perline=4" />
 </p>
 
-### 🤖 Machine Learning & Data Science
+### Machine Learning & Data Science
 
 <p align="center">
   <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" />
@@ -85,7 +87,7 @@ The data were initially organized into the required format using spreadsheet-bas
   <img src="https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=matplotlib&logoColor=white" />
 </p>
 
-### 🧪 Machine Learning Methods
+### Machine Learning Methods
 
 <p align="center">
   <img src="https://img.shields.io/badge/K--Means_Clustering-6C63FF?style=for-the-badge" />
@@ -98,10 +100,16 @@ The data were initially organized into the required format using spreadsheet-bas
 
  # 📄 License
 
- This was the *second* project which had been independently developed by me during my two-months research internship at the *Defence Research and Development Organisation (DRDO), Ministry of Defence, Government of India*. The project is intended for research and educational purposes. **This repository does not represent an official DRDO publication, endorsement or release.**
+ This was the **second** project which had been independently developed by me during my two-months research internship at the **Defence Research and Development Organisation (DRDO), Ministry of Defence, Government of India**. The project is intended for research and educational purposes. **This repository does not represent an official DRDO publication, endorsement or release.**
 
 ---
 
- # 👤 Author
+ # 👩🏻‍💻 Author
 
  **Vamika Arya**
+
+ <p align="center">
+  <a href="https://www.linkedin.com/in/vamika-arya-4a0179288/">
+    <img src="https://img.shields.io/badge/LinkedIn-Vamika%20Arya-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+  </a>
+</p>
