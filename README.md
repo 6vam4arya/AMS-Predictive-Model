@@ -101,10 +101,10 @@ The data were initially organized into the required format using spreadsheet-bas
 ### Create virtual environment
 python -m venv venv
 
-### Activate environment — Windows
+### Activate environment - Windows
 venv\Scripts\activate
 
-### Activate environment — macOS/Linux
+### Activate environment - macOS/Linux
 source venv/bin/activate
 
 ### Install dependencies
