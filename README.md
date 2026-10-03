@@ -96,6 +96,19 @@ The data were initially organized into the required format using spreadsheet-bas
   <img src="https://img.shields.io/badge/Welch's_t--test-4C78A8?style=for-the-badge" />
 </p>
 
+# Results 
+Successful Generation and Integration of Clinical, Physiological, Transcriptomic and Lake Louise Score Data for AMS Risk Analysis, K-Means Clustering and Naive Bayes Prediction
+<img width="387" height="215" alt="Initial Stage" src="https://github.com/user-attachments/assets/7ce7567d-cde8-4c52-aed4-3559aa74d051" />
+<br>
+**Stage 1 of  Machine Learning-Based Genetic Analysis of AMS pipeline**  : Data preprocessing and unsupervised learning stage: Integrating multimodal AMS datasets, train-test split and applying K-Means clustering (K=4) to identify distinct physiological and AMS acclimatization profiles. 
+<img width="560" height="277" alt="Stage 1" src="https://github.com/user-attachments/assets/76b4d8a0-618d-42a1-8b0f-5bac8b395e3a" />
+<br>
+**Stage 2 of  Machine Learning-Based Genetic Analysis of AMS pipeline** : The top five genes identified from each of the four K-Means clusters, resulting in 20 selected candidate genes associated with distinct AMS and acclimatization profiles.
+<img width="601" height="208" alt="Stage 2" src="https://github.com/user-attachments/assets/7e7e0882-7247-42f1-a969-eb8704347ef5" />
+<br>
+**Stage 3 of  Machine Learning-Based Genetic Analysis of AMS pipeline** : The Naive Bayes classifier achieved 99.0% accuracy, with 96.15% precision, 100% recall, 98.04% F1-score, 98.67% specificity and an AUC of 1.00 on the test set.
+<img width="392" height="125" alt="Stage 3" src="https://github.com/user-attachments/assets/6d5051bb-1911-45a8-91fb-e26924d76c43" />
+
 # Quick Setup
 
 ### Create virtual environment
